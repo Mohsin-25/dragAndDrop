@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { useFetchTasks, useUpdateTask } from "../../service/service";
+import {
+  useDeleteTask,
+  useFetchTasks,
+  useUpdateTask,
+} from "../../service/service";
 import { columns, dummyData } from "../utils/constants";
 
 const useDragAndDrop = () => {
@@ -8,6 +12,7 @@ const useDragAndDrop = () => {
 
   const { tasks } = useFetchTasks();
   const { updateTask } = useUpdateTask();
+  const { deleteTask } = useDeleteTask();
 
   useEffect(() => {
     setTaskList(tasks);
@@ -68,6 +73,7 @@ const useDragAndDrop = () => {
       handleDrop,
       handleDragStart,
       setTaskList,
+      deleteTask,
     },
   };
 };

@@ -15,7 +15,7 @@ export const columns = [
 
 export const dummyData = [
   {
-    id: 1,
+    id: "619",
     title: "Learn TypeScript",
     description: "Complete the TypeScript official documentation",
     status: {
@@ -24,7 +24,7 @@ export const dummyData = [
     },
   },
   {
-    id: 2,
+    id: "629",
     title: "Build Next.js App",
     description: "Create a project using Next.js and Tailwind CSS",
     status: {
@@ -33,7 +33,7 @@ export const dummyData = [
     },
   },
   {
-    id: 3,
+    id: "639",
     title: "Write Blog Post",
     description: "Write a blog on React best practices",
     status: {
@@ -42,7 +42,7 @@ export const dummyData = [
     },
   },
   {
-    id: 4,
+    id: "649",
     title: "Prepare for Interview",
     description: "Study system design concepts and DSA problems",
     status: {
@@ -51,7 +51,7 @@ export const dummyData = [
     },
   },
   {
-    id: 5,
+    id: "659",
     title: "Workout",
     description: "Complete a 30-minute workout session",
     status: {
@@ -60,7 +60,7 @@ export const dummyData = [
     },
   },
   {
-    id: 6,
+    id: "669",
     title: "Read Book",
     description: "Finish reading 'Atomic Habits'",
     status: {
@@ -69,7 +69,7 @@ export const dummyData = [
     },
   },
   {
-    id: 7,
+    id: "679",
     title: "Project Refactor",
     description: "Refactor the codebase for better readability",
     status: {
@@ -78,7 +78,7 @@ export const dummyData = [
     },
   },
   {
-    id: 8,
+    id: "689",
     title: "Fix Bugs",
     description: "Fix the reported bugs from QA team",
     status: {
@@ -87,7 +87,7 @@ export const dummyData = [
     },
   },
   {
-    id: 9,
+    id: "699",
     title: "Deploy to Production",
     description: "Deploy the new version of the application",
     status: {

@@ -8,6 +8,7 @@ import {
   Label,
 } from "@headlessui/react";
 import { useState } from "react";
+import { HiMiniChevronDown } from "react-icons/hi2";
 
 export default function Dropdown({
   label,
@@ -19,7 +20,7 @@ export default function Dropdown({
   options,
 }) {
   const [query, setQuery] = useState("");
-  const [selected, setSelected] = useState({});
+  const [selected, setSelected] = useState(data?.[slug]);
 
   const filteredOptions =
     query === ""
@@ -50,7 +51,9 @@ export default function Dropdown({
                 onChange={(e) => setQuery(e.target.value)}
                 required={required}
               />
-              <span className="ml-2 mb-2">{"⌄"}</span>
+              <span className="ml-2">
+                <HiMiniChevronDown size={20} />
+              </span>
             </ComboboxButton>
 
             <div className="absolute w-full bg-black rounded-lg mt-2">

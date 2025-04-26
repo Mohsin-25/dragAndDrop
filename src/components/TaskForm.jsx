@@ -3,20 +3,32 @@ import Button from "./utils/Button";
 import Dropdown from "./utils/Dropdown";
 import TextField from "./utils/TextField";
 import { columns } from "./utils/constants";
-import { useCreateTask, useDeleteTask } from "../service/service";
+import {
+  useCreateTask,
+  useDeleteTask,
+  useUpdateTask,
+} from "../service/service";
 
-const TaskForm = ({ onClose, setTaskList }) => {
+const TaskForm = ({ onClose, setTaskList, openForm, setOpenForm }) => {
   const { createTask } = useCreateTask();
+  const { updateTask } = useUpdateTask();
 
   const [userData, setUserData] = useState({
-    title: "",
-    description: "",
-    status: "",
+    title: openForm?.data?.title || "",
+    description: openForm?.data?.description || "",
+    status: openForm?.data?.status || {},
   });
 
   const handleSubmit = (data) => {
-    createTask(data);
-
+    if (!isNaN(openForm?.data?.id)) {
+      updateTask({ ...data, id: openForm?.data?.id });
+    } else {
+      createTask(data);
+    }
+    setOpenForm({
+      open: false,
+      data: {},
+    });
     onClose && onClose();
   };
 
@@ -36,16 +48,13 @@ const TaskForm = ({ onClose, setTaskList }) => {
           required={true}
           data={userData}
           maxLength=""
-          // validation="alphanumeric"
         />
         <TextField
           label="Description"
           slug="description"
           setDataFn={setUserData}
-          // required={true}
           data={userData}
           maxLength=""
-          // validation="alphanumeric"
         />
         <Dropdown
           label="Status"
