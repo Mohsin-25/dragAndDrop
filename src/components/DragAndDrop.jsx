@@ -21,16 +21,18 @@ const DragAndDrop = () => {
     <div className="flex flex-col w-full h-full justify-between gap-4 m-4">
       <div className="w-[95vw] lg:w-[80vw] h-[90vh] flex flex-col gap-4">
         <div className=" h-fit w-full flex flex-col sm:flex-row gap-4 text-2xl lg:text-3xl justify-between rounded-lg">
-          {taskList?.length > 1 && (
-            <div className="flex">
-              <span className="flex justify-center mr-3 bg-white/20 rounded-md items-center w-[35px] h-[35px] ">
-                {taskList?.length}
-              </span>
-              <span className="">
-                {taskList?.length > 1 ? "Tasks" : "Task"}
-              </span>
-            </div>
-          )}
+          <div className="flex">
+            {taskList?.length > 1 && (
+              <>
+                <span className="flex justify-center mr-3 bg-white/20 rounded-md items-center w-[35px] h-[35px] ">
+                  {taskList?.length}
+                </span>
+                <span className="">
+                  {taskList?.length > 1 ? "Tasks" : "Task"}
+                </span>
+              </>
+            )}
+          </div>
           <div className="flex gap-4 justify-end">
             <Button onClick={handleAddDummyData}>Add Dummy Tasks</Button>
             <Button onClick={handleClearTable}>Clear Table</Button>
@@ -92,10 +94,12 @@ const DragAndDrop = () => {
                         draggable
                         onDragStart={(e) => handleDragStart(e, task)}
                       >
-                        <span className="text-xl lg:text-2xl font-semibold">
+                        <span className="text-xl lg:text-2xl font-semibold line-clamp-2 text-ellipsis overflow-hidden">
                           {task.title}
                         </span>
-                        <span className="text-base">{task.description}</span>
+                        <span className="text-base line-clamp-2 text-ellipsis overflow-hidden">
+                          {task?.description || "---"}
+                        </span>
                       </div>
                     );
                   })}

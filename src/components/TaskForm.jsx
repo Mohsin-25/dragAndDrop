@@ -39,16 +39,16 @@ const TaskForm = ({ onClose, setTaskList }) => {
           required={true}
           data={userData}
           maxLength=""
-          validation="alphanumeric"
+          // validation="alphanumeric"
         />
         <TextField
           label="Description"
           slug="description"
           setDataFn={setUserData}
-          required={true}
+          // required={true}
           data={userData}
           maxLength=""
-          validation="alphanumeric"
+          // validation="alphanumeric"
         />
         <Dropdown
           label="Status"
