@@ -19,8 +19,8 @@ const DragAndDrop = () => {
 
   return (
     <div className="flex flex-col w-full h-full justify-between gap-4 mt-4">
-      <div className="w-[80vw] h-[80vh] flex flex-col gap-4">
-        <div className=" h-fit w-full flex text-3xl py-4 justify-between  rounded-lg px-4">
+      <div className="w-[95vw] lg:w-[80vw] h-[80vh] flex flex-col gap-4">
+        <div className=" h-fit w-full flex text-2xl lg:text-3xl py-4 justify-between  rounded-lg px-4">
           <div className="flex">
             {taskList?.length > 1 && (
               <>
@@ -62,7 +62,7 @@ const DragAndDrop = () => {
                 <div
                   data-stage={section.value}
                   className="data-[stage=done]:bg-green-400 data-[stage=todo]:bg-blue-400 data-[stage=inProgress]:bg-yellow-500
-                  h-fit w-full flex justify-center text-3xl py-4"
+                  h-fit w-full flex justify-center text-2xl lg:text-3xl py-4"
                 >
                   <span
                     data-stage={section.value}
@@ -94,7 +94,7 @@ const DragAndDrop = () => {
                         draggable
                         onDragStart={(e) => handleDragStart(e, task)}
                       >
-                        <span className="text-2xl font-semibold">
+                        <span className="text-xl lg:text-2xl font-semibold">
                           {task.title}
                         </span>
                         <span className="text-base">{task.description}</span>
