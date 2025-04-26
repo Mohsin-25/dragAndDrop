@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useFetchTasks } from "../../service/service";
 import { columns, dummyData } from "../utils/constants";
 
 const useDragAndDrop = () => {
@@ -7,6 +8,10 @@ const useDragAndDrop = () => {
 
   const [taskList, setTaskList] = useState([]);
   const [draggedTask, setDraggedTask] = useState(null);
+
+  const { tasks } = useFetchTasks();
+
+  console.log("ddd", tasks);
 
   useEffect(() => {
     setTaskList(listData);

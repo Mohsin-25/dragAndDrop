@@ -35,11 +35,11 @@ const DragAndDrop = () => {
           </div>
           <div className="flex gap-4 justify-end">
             <Button onClick={handleAddDummyData}>Add Dummy Tasks</Button>
-            <Button onClick={handleClearTable}>Clear Table</Button>
+            <Button onClick={handleClearTable}>Clear Board</Button>
             <Modal
               title="Add new task"
               trigger={({ open }) => (
-                <Button onClick={open}>+ Add new task</Button>
+                <Button onClick={open}>+ Add New Task</Button>
               )}
             >
               {({ close }) => (

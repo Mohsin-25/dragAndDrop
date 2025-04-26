@@ -3,8 +3,12 @@ import Button from "./utils/Button";
 import Dropdown from "./utils/Dropdown";
 import TextField from "./utils/TextField";
 import { columns } from "./utils/constants";
+import { useCreateTask, useDeleteTask } from "../service/service";
 
 const TaskForm = ({ onClose, setTaskList }) => {
+  const { createTask } = useCreateTask();
+  const { deleteTask } = useDeleteTask();
+
   const data = localStorage.getItem("listData");
   const listData = data ? JSON.parse(data) : [];
 
@@ -20,6 +24,9 @@ const TaskForm = ({ onClose, setTaskList }) => {
       JSON.stringify([...listData, { ...data, id: new Date().getTime() }])
     );
     setTaskList([...listData, { ...data, id: new Date().getTime() }]);
+    createTask(data);
+    deleteTask(3);
+
     onClose && onClose();
   };
 
