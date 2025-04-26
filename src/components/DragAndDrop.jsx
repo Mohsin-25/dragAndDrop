@@ -1,64 +1,53 @@
-import React, { useEffect, useState } from "react";
-import Modal from "./utils/Modal";
+import React from "react";
+import useDragAndDrop from "./hooks/useDragAndDrop";
 import TaskForm from "./TaskForm";
 import Button from "./utils/Button";
 import { columns } from "./utils/constants";
+import Modal from "./utils/Modal";
 
 const DragAndDrop = () => {
-  const data = localStorage.getItem("listData");
-  const listData = data ? JSON.parse(data) : [];
-
-  const [taskList, setTaskList] = useState([]);
-  const [draggedTask, setDraggedTask] = useState(null);
-
-  useEffect(() => {
-    setTaskList(listData);
-  }, [data]);
-
-  const handleDragStart = (e, task) => {
-    setDraggedTask(task);
-  };
-
-  const handleDrop = (e, newStatus) => {
-    e.preventDefault();
-    if (!draggedTask) {
-      return;
-    }
-
-    const updatedList = taskList.map((task) => {
-      if (task === draggedTask) {
-        return {
-          ...task,
-          status: columns.find((col) => col.value === newStatus),
-        };
-      }
-      return task;
-    });
-
-    setTaskList(updatedList);
-    localStorage.setItem("listData", JSON.stringify(updatedList));
-    setDraggedTask(null);
-  };
-
-  const todoCount =
-    taskList.filter((task) => task.status.value === "todo").length || "0";
-
-  const inProgressCount =
-    taskList.filter((task) => task.status.value === "inProgress").length || "0";
-
-  const doneCount =
-    taskList.filter((task) => task.status.value === "done").length || "0";
+  const {
+    values: { todoCount, inProgressCount, doneCount, taskList },
+    events: {
+      handleAddDummyData,
+      handleClearTable,
+      handleDrop,
+      handleDragStart,
+      setTaskList,
+    },
+  } = useDragAndDrop();
 
   return (
-    <div className="flex flex-col w-full h-full justify-between gap-4">
-      <Modal
-        title="Add new task"
-        trigger={({ open }) => <Button onClick={open}>+ Add new task</Button>}
-      >
-        {({ close }) => <TaskForm onClose={close} />}
-      </Modal>
-
-      <div className="w-[80vw] h-[80vh]">
+    <div className="flex flex-col w-full h-full justify-between gap-4 mt-4">
+      <div className="w-[80vw] h-[80vh] flex flex-col gap-4">
+        <div className=" h-fit w-full flex text-3xl py-4 justify-between  rounded-lg px-4">
+          <div className="flex">
+            {taskList?.length > 1 && (
+              <>
+                <span className="flex justify-center mr-3 bg-white/20 rounded-md items-center w-[35px] h-[35px] ">
+                  {taskList?.length}
+                </span>
+                <span className="">
+                  {taskList?.length > 1 ? "Tasks" : "Task"}
+                </span>
+              </>
+            )}
+          </div>
+          <div className="flex gap-4">
+            <Button onClick={handleAddDummyData}>Add Dummy Tasks</Button>
+            <Button onClick={handleClearTable}>Clear Table</Button>
+            <Modal
+              title="Add new task"
+              trigger={({ open }) => (
+                <Button onClick={open}>+ Add new task</Button>
+              )}
+            >
+              {({ close }) => (
+                <TaskForm onClose={close} setTaskList={setTaskList} />
+              )}
+            </Modal>
+          </div>
+        </div>
         <div className="w-full h-full flex gap-4">
           {columns.map((section, index) => {
             const isToDo = section.value === "todo";
@@ -70,7 +59,7 @@ const DragAndDrop = () => {
                 key={section.value}
                 className="w-full flex flex-col gap-5 rounded-lg overflow-auto scrollbar-hide"
               >
-                <span
+                <div
                   data-stage={section.value}
                   className="data-[stage=done]:bg-green-400 data-[stage=todo]:bg-blue-400 data-[stage=inProgress]:bg-yellow-500
                   h-fit w-full flex justify-center text-3xl py-4"
@@ -85,11 +74,11 @@ const DragAndDrop = () => {
                       (isInProgress && inProgressCount) ||
                       (isDone && doneCount)}
                   </span>
-                  {section.label}
-                </span>
+                  <span className="">{section.label}</span>
+                </div>
 
                 <div
-                  className="flex flex-col gap-5 bg-white/10 h-full"
+                  className="flex flex-col gap-5 bg-white/5 h-full"
                   onDragOver={(e) => e.preventDefault()}
                   onDrop={(e) => handleDrop(e, section.value)}
                 >
@@ -98,9 +87,9 @@ const DragAndDrop = () => {
 
                     return (
                       <div
-                        key={task.id || idx}
+                        key={idx}
                         data-stage={section.value}
-                        className="flex flex-col bg-white/10 p-2 border-l-4
+                        className="flex flex-col bg-white/5 p-2 border-l-4 hover:bg-white/10
                         data-[stage=done]:border-green-400 data-[stage=todo]:border-blue-400 data-[stage=inProgress]:border-yellow-500"
                         draggable
                         onDragStart={(e) => handleDragStart(e, task)}

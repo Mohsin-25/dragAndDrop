@@ -44,12 +44,13 @@ export default function Dropdown({
           <div className="relative w-full">
             <ComboboxButton className="w-full flex rounded-lg border-none bg-white/5 py-2 px-3 text-sm text-white outline-none focus:outline-none">
               <ComboboxInput
+                autocomplete="off"
                 className="w-full bg-transparent outline-none text-white placeholder-white/70"
                 displayValue={(option) => option?.label}
                 onChange={(e) => setQuery(e.target.value)}
                 required={required}
               />
-              <span className="rotate-90 ml-2">{">"}</span>
+              <span className="ml-2 mb-2">{"⌄"}</span>
             </ComboboxButton>
 
             {!!filteredOptions.length && (

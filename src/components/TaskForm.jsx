@@ -4,7 +4,10 @@ import Dropdown from "./utils/Dropdown";
 import TextField from "./utils/TextField";
 import { columns } from "./utils/constants";
 
-const TaskForm = ({ onClose }) => {
+const TaskForm = ({ onClose, setTaskList }) => {
+  const data = localStorage.getItem("listData");
+  const listData = data ? JSON.parse(data) : [];
+
   const [userData, setUserData] = useState({
     title: "",
     description: "",
@@ -12,13 +15,11 @@ const TaskForm = ({ onClose }) => {
   });
 
   const handleSubmit = (data) => {
-    const raw = localStorage.getItem("listData");
-    const listData = raw ? JSON.parse(raw) : [];
-
     localStorage.setItem(
       "listData",
       JSON.stringify([...listData, { ...data, id: new Date().getTime() }])
     );
+    setTaskList([...listData, { ...data, id: new Date().getTime() }]);
     onClose && onClose();
   };
 
