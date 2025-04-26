@@ -22,7 +22,7 @@ export default function Modal({ children, title, trigger }) {
         <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
           <div className="flex min-h-full items-center justify-center p-4">
             <div className="bg-black rounded-xl">
-              <DialogPanel className="w-full min-w-[600px] rounded-xl bg-white/10 p-6 ">
+              <DialogPanel className="sm:max-w-[600px] min-w-[400px] sm:min-w-[600px] rounded-xl bg-white/10 p-6 ">
                 <DialogTitle className=" text-2xl font-medium text-white text-center">
                   {title}
                 </DialogTitle>

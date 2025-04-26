@@ -53,22 +53,21 @@ export default function Dropdown({
               <span className="ml-2 mb-2">{"⌄"}</span>
             </ComboboxButton>
 
-            {!!filteredOptions.length && (
-              <ComboboxOptions
-                anchor="bottom"
-                className="absolute left-0 z-20 mt-1 rounded-md border border-white/5 bg-black p-1 transition duration-100 ease-in"
-              >
-                {filteredOptions.map((option) => (
-                  <ComboboxOption
-                    key={option.value}
-                    value={option}
-                    className="group flex cursor-default items-center gap-2 rounded-md px-3 w-full text-sm text-white select-none data-[focus]:bg-white/5"
-                  >
-                    {option.label}
-                  </ComboboxOption>
-                ))}
-              </ComboboxOptions>
-            )}
+            <div className="absolute w-full bg-black rounded-lg mt-2">
+              {!!filteredOptions.length && (
+                <ComboboxOptions className="z-20 rounded-md border border-white/5 bg-white/10 transition duration-100 ease-in">
+                  {filteredOptions.map((option) => (
+                    <ComboboxOption
+                      key={option.value}
+                      value={option}
+                      className="group flex cursor-default items-center gap-2 rounded-md p-3 w-full text-sm text-white select-none data-[focus]:bg-white/5"
+                    >
+                      {option.label}
+                    </ComboboxOption>
+                  ))}
+                </ComboboxOptions>
+              )}
+            </div>
           </div>
         </Combobox>
       </Field>
