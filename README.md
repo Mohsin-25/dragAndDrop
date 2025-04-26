@@ -1,12 +1,40 @@
-# React + Vite
+📝 Kanban Task Manager
+A simple yet powerful drag-and-drop task management application built with React and Tailwind CSS, featuring backend persistence via a mock REST API (MockAPI.io).
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Live Demo:
+https://drag-and-drop-git-main-mohammad-mohsin-s-projects.vercel.app/
 
-Currently, two official plugins are available:
+⚙️ Architecture
+Component-Based Structure: Organized into modular, reusable React components.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Custom Hooks: Dedicated hooks for API communication (useGetTasks, useCreateTask, etc.) to keep logic separate from UI.
 
-## Expanding the ESLint configuration
+Service Layer: Centralized API requests handled cleanly via Axios services.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+UI Components: Reusable button, modal, input components with Tailwind styling.
+
+🔥 Features
+Drag-and-Drop:
+Move tasks across columns (To Do, In Progress, Completed) using intuitive drag-and-drop with inbuilt HTML functionalities,
+with task editing and deletion support
+
+Responsive Design:
+Fully responsive and mobile-friendly — optimized layouts for all screen sizes.
+
+Persistent Storage:
+Task data is synced with a mock REST API for persistence across sessions.
+
+Dynamic Modal Forms:
+Add new tasks using a sleek modal form powered by Headless UI + Tailwind CSS.
+
+Status Tracking:
+Task counts are dynamically updated for each column (To Do / In Progress / Completed).
+
+🚀 Tech Stack
+Frontend: React.js, Tailwind CSS, Headless UI
+
+API : React Query (TanStack Query), Axios
+
+Backend (Mock API): MockAPI.io
+
+Deployment: Vercel
