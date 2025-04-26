@@ -20,6 +20,25 @@ export function useCreateTask() {
   return { createTask: mutate };
 }
 
+export function useUpdateTask() {
+  const queryClient = useQueryClient();
+
+  const { mutate, data, isloading } = useMutation({
+    mutationFn: (payload) =>
+      axios.put(
+        `https://680ce9ea2ea307e081d56b0c.mockapi.io/api/tasks/${payload?.id}`,
+        payload
+      ),
+    onSuccess: (res) => {
+      if (res?.status >= 200 && res?.status <= 299) {
+        queryClient.invalidateQueries(["getTasks"]);
+      }
+    },
+  });
+
+  return { updateTask: mutate };
+}
+
 export function useDeleteTask() {
   const queryClient = useQueryClient();
 

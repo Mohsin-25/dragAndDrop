@@ -80,7 +80,7 @@ const DragAndDrop = () => {
                 <div
                   className="flex flex-col gap-5 bg-white/5 h-full"
                   onDragOver={(e) => e.preventDefault()}
-                  onDrop={(e) => handleDrop(e, section.value)}
+                  onDrop={(e) => handleDrop(e, section)}
                 >
                   {taskList.map((task, idx) => {
                     if (section.value !== task.status.value) return null;

@@ -7,10 +7,6 @@ import { useCreateTask, useDeleteTask } from "../service/service";
 
 const TaskForm = ({ onClose, setTaskList }) => {
   const { createTask } = useCreateTask();
-  const { deleteTask } = useDeleteTask();
-
-  const data = localStorage.getItem("listData");
-  const listData = data ? JSON.parse(data) : [];
 
   const [userData, setUserData] = useState({
     title: "",
@@ -19,13 +15,7 @@ const TaskForm = ({ onClose, setTaskList }) => {
   });
 
   const handleSubmit = (data) => {
-    localStorage.setItem(
-      "listData",
-      JSON.stringify([...listData, { ...data, id: new Date().getTime() }])
-    );
-    setTaskList([...listData, { ...data, id: new Date().getTime() }]);
     createTask(data);
-    deleteTask(3);
 
     onClose && onClose();
   };

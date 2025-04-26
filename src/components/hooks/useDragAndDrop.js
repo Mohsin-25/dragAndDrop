@@ -1,21 +1,17 @@
 import { useEffect, useState } from "react";
-import { useFetchTasks } from "../../service/service";
+import { useFetchTasks, useUpdateTask } from "../../service/service";
 import { columns, dummyData } from "../utils/constants";
 
 const useDragAndDrop = () => {
-  const data = localStorage.getItem("listData");
-  const listData = data ? JSON.parse(data) : [];
-
   const [taskList, setTaskList] = useState([]);
   const [draggedTask, setDraggedTask] = useState(null);
 
   const { tasks } = useFetchTasks();
-
-  console.log("ddd", tasks);
+  const { updateTask } = useUpdateTask();
 
   useEffect(() => {
-    setTaskList(listData);
-  }, [JSON.stringify(data), JSON.stringify(listData)]);
+    setTaskList(tasks);
+  }, [JSON.stringify(tasks)]);
 
   const handleDragStart = (e, task) => {
     setDraggedTask(task);
@@ -28,27 +24,30 @@ const useDragAndDrop = () => {
     }
 
     const updatedList = taskList.map((task) => {
-      if (task === draggedTask) {
+      if (task?.id == draggedTask?.id) {
         return {
           ...task,
-          status: columns.find((col) => col.value === newStatus),
+          status: columns.find((col) => col.value === newStatus?.value),
         };
       }
       return task;
     });
 
+    const taskPayload = {
+      ...draggedTask,
+      status: newStatus,
+    };
+
+    updateTask(taskPayload);
     setTaskList(updatedList);
-    localStorage.setItem("listData", JSON.stringify(updatedList));
     setDraggedTask(null);
   };
 
   const handleAddDummyData = () => {
-    localStorage.setItem("listData", JSON.stringify(dummyData));
     setTaskList(dummyData);
   };
 
   const handleClearTable = () => {
-    localStorage.setItem("listData", JSON.stringify([]));
     setTaskList([]);
   };
 
