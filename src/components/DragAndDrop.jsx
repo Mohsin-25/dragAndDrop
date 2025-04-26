@@ -18,22 +18,20 @@ const DragAndDrop = () => {
   } = useDragAndDrop();
 
   return (
-    <div className="flex flex-col w-full h-full justify-between gap-4 mt-4">
-      <div className="w-[95vw] lg:w-[80vw] h-[80vh] flex flex-col gap-4">
-        <div className=" h-fit w-full flex text-2xl lg:text-3xl py-4 justify-between  rounded-lg px-4">
-          <div className="flex">
-            {taskList?.length > 1 && (
-              <>
-                <span className="flex justify-center mr-3 bg-white/20 rounded-md items-center w-[35px] h-[35px] ">
-                  {taskList?.length}
-                </span>
-                <span className="">
-                  {taskList?.length > 1 ? "Tasks" : "Task"}
-                </span>
-              </>
-            )}
-          </div>
-          <div className="flex gap-4">
+    <div className="flex flex-col w-full h-full justify-between gap-4 m-4">
+      <div className="w-[95vw] lg:w-[80vw] h-[90vh] flex flex-col gap-4">
+        <div className=" h-fit w-full flex flex-col sm:flex-row gap-4 text-2xl lg:text-3xl justify-between rounded-lg">
+          {taskList?.length > 1 && (
+            <div className="flex">
+              <span className="flex justify-center mr-3 bg-white/20 rounded-md items-center w-[35px] h-[35px] ">
+                {taskList?.length}
+              </span>
+              <span className="">
+                {taskList?.length > 1 ? "Tasks" : "Task"}
+              </span>
+            </div>
+          )}
+          <div className="flex gap-4 justify-end">
             <Button onClick={handleAddDummyData}>Add Dummy Tasks</Button>
             <Button onClick={handleClearTable}>Clear Table</Button>
             <Modal
@@ -62,11 +60,11 @@ const DragAndDrop = () => {
                 <div
                   data-stage={section.value}
                   className="data-[stage=done]:bg-green-400 data-[stage=todo]:bg-blue-400 data-[stage=inProgress]:bg-yellow-500
-                  h-fit w-full flex justify-center text-2xl lg:text-3xl py-4"
+                  h-fit w-full flex sm:flex-row flex-col-reverse sm:gap-3 items-center justify-center text-2xl lg:text-3xl sm:p-4 pb-2"
                 >
                   <span
                     data-stage={section.value}
-                    className="flex justify-center mr-3 rounded-md items-center w-[35px] h-[35px]
+                    className="flex justify-center rounded-md items-center w-[35px] h-[35px] text-xl lg:text-3xl
                     data-[stage=done]:bg-green-200 data-[stage=todo]:bg-blue-200 data-[stage=inProgress]:bg-yellow-200
                     data-[stage=done]:text-green-400 data-[stage=todo]:text-blue-400 data-[stage=inProgress]:text-yellow-500"
                   >
@@ -74,7 +72,7 @@ const DragAndDrop = () => {
                       (isInProgress && inProgressCount) ||
                       (isDone && doneCount)}
                   </span>
-                  <span className="">{section.label}</span>
+                  <span className="whitespace-nowrap">{section.label}</span>
                 </div>
 
                 <div
