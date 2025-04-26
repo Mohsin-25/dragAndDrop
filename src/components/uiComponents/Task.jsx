@@ -17,12 +17,11 @@ const Task = ({
     >
       {taskList.map((task, idx) => {
         if (section.value !== task.status.value) return null;
-        console.log("ddd", task);
+
         const isDummyData = task?.id?.startsWith(6) && task?.id?.endsWith(9);
         return (
-          <div className="relative group cursor-grab">
+          <div className="relative group cursor-grab" key={idx}>
             <div
-              key={idx}
               data-stage={section.value}
               className="flex flex-col bg-white/5 p-2 border-l-4 hover:bg-white/10 min-h-[92px]
                           data-[stage=done]:border-green-400 data-[stage=todo]:border-blue-400 data-[stage=inProgress]:border-yellow-500"

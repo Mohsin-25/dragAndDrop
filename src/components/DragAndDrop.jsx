@@ -29,7 +29,7 @@ const DragAndDrop = () => {
       <div className="w-[95vw] lg:w-[80vw] h-[90vh] flex flex-col gap-4">
         <div className=" h-fit w-full flex flex-col sm:flex-row gap-4 text-2xl lg:text-3xl justify-between rounded-lg">
           <div className="flex">
-            {taskList?.length > 1 && (
+            {taskList?.length >= 1 && (
               <>
                 <span className="flex justify-center mr-3 bg-white/20 rounded-md items-center w-[35px] h-[35px] ">
                   {taskList?.length}
